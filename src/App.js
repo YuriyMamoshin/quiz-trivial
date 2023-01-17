@@ -1,12 +1,15 @@
-export default function App() {
-    return (
-        <main>
-<div className="content">
-<h1 className="caption">Quizzical</h1>
-<p className="description">Some description if needed</p>
-<button>Start quiz</button>
-</div>
-        </main>
+import React from "react";
+import { useState } from "react";
+import Main from "./Main"
+import Quiz from "./Quiz"
 
+export default function App() {
+
+    const [quizStarted, setQuizStarted] = useState(false);
+
+    return (
+        <div>
+            {quizStarted ? <Quiz /> : <Main />}
+        </div>
     )
 }
