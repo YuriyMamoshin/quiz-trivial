@@ -1,0 +1,42 @@
+body {
+  background-color: black;
+  text-align: center;
+}
+
+main {
+  margin: auto;
+  width: 550px;
+  height: 550px;
+  margin-top: 112px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(pictures/blob_blue.png) left bottom no-repeat, url(pictures/blob_yellow.png) right top no-repeat;
+  background-color: #F5F7FB;
+}
+
+.caption {
+  font-family: "Karla", sans-serif;
+  font-weight: 700;
+  font-size: 31px;
+  color: #293264;
+}
+
+.description {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: #293264;
+}
+
+button {
+  margin-top: 19px;
+  width: 193px;
+  height: 52px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  background-color: #4D5B9E;
+  color: #F5F7FB;
+  border-radius: 15px;
+}
