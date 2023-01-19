@@ -5,7 +5,7 @@ import Quiz from "./Quiz"
 
 export default function App() {
 
-    const [quizStarted, setQuizStarted] = useState(false);
+    const [quizStarted, setQuizStarted] = useState(true);
 
     return (
         <div>

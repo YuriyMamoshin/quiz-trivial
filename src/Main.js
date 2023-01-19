@@ -1,10 +1,10 @@
 export default function Main() {
     return (
-        <main>
+        <main className="main">
         <div>
         <h1 className="caption">Quizzical</h1>
         <p className="description">Some description if needed</p>
-        <button>Start quiz</button>
+        <button className="main-button">Start quiz</button>
         </div>
                 </main>
     )
