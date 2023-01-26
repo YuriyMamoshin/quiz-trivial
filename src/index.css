@@ -10,7 +10,7 @@ body {
 .main {
   margin: auto;
   width: 550px;
-  height: 550px;
+  height: 600px;
   margin-top: 112px;
   display: flex;
   align-items: center;
@@ -31,14 +31,14 @@ body {
   background-color: #F5F7FB;
 }
 
-.caption {
+.main-caption {
   font-family: "Karla", sans-serif;
   font-weight: 700;
   font-size: 31px;
   color: #293264;
 }
 
-.description {
+.main-description {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 19px;
@@ -57,10 +57,14 @@ body {
   border-radius: 15px;
 }
 
-.question {
+.question-container {
+  width: 399px;
+}
+
+.question-text {
   font-family: "Karla", sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   text-align: start;
 }
 
@@ -73,17 +77,19 @@ body {
   background-color: #4D5B9E;
   color: #F5F7FB;
   border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .answer-container {
-  width: 399px;
   display: flex;
   justify-content: flex-start;
   border-bottom: 0.9px solid #DBDEF0;
+
 }
 
 .answer-button {
-  height: 20px;
+  /* height: 20px; */
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 10px;
@@ -91,6 +97,7 @@ body {
   border: 0.8px solid #4D5B9E;
   border-radius: 8px;
   margin-left: 13px;
+  margin-bottom: 15px;
 }
 
 button:first-of-type {

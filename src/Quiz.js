@@ -1,5 +1,6 @@
 import Question from "./Question"
 import { useEffect, useState } from "react"
+import { nanoid } from "nanoid";
 
 export default function Quiz() {
 useEffect(  () => {
@@ -17,6 +18,7 @@ async function fetchData() {
 const questions = data.map(piece => {
 return (
     <Question
+    key={nanoid()}
     question={piece.question}
     correct={piece.correct_answer}
     incorrect={piece.incorrect_answers}
@@ -25,11 +27,7 @@ return (
 })
     return (
         <main className="main-quiz">
-            <Question/>
-            <Question/>
-            <Question/>
-            <Question/>
-            <Question/>
+          {questions}
             <button className="check-button">Check answers</button>
         </main>
     )
