@@ -1,4 +1,6 @@
 import Answer from "./Answer";
+import { useState } from "react";
+import { nanoid } from "nanoid";
 
 export default function Question(props) {
 
@@ -25,12 +27,30 @@ export default function Question(props) {
 
     const shuffledAnswersArray = shuffle(answersArray);
 
-    const answerButtons = shuffledAnswersArray.map(answer => {
+    const [answerData, setAnswerData] = useState(shuffledAnswersArray);
+
+function chooseAnswer(id) {
+setAnswerData( oldData => {
+    return oldData.map(answer => {
+        return answer.id === id ? 
+        {...answer, clicked: !answer.clicked} : 
+        {...answer, clicked: false};
+            })
+}
+    
+   
+    )
+}
+
+    const answerButtons = answerData.map(answer => {
         return (
             <Answer
+                key={answer.id}
                 value={answer.value}
                 correct={answer.correct}
-                id={answer.id}
+                clicked={answer.clicked}
+                choose={() => chooseAnswer(answer.id)}
+
             />
         )
     })
