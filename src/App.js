@@ -6,11 +6,20 @@ import Quiz from "./Quiz"
 
 export default function App() {
 
-    const [quizStarted, setQuizStarted] = useState(true);
+    const [quizStarted, setQuizStarted] = useState(false);
 
+    function toggleStarted() {
+        setQuizStarted(prevStarted => !prevStarted)
+    }
     return (
         <div>
-            {quizStarted ? <Quiz /> : <Main />}
+            {quizStarted ? 
+            <Quiz 
+            toggle={toggleStarted}
+            /> : 
+            <Main 
+            toggle={toggleStarted}
+            />}
         </div>
     )
 }

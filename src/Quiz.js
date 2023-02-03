@@ -2,7 +2,7 @@ import Question from "./Question"
 import { useEffect, useState } from "react"
 import { nanoid } from "nanoid";
 
-export default function Quiz() {
+export default function Quiz(props) {
 useEffect(  () => {
     fetchData();
 }, [])
@@ -14,7 +14,10 @@ async function fetchData() {
     let fetchedData = await response.json();
     setData(fetchedData.results);
 }
- 
+
+const [isChecked, setIsChecked] = useState(false);
+
+
 const questions = data.map(piece => {
 return (
     <Question
@@ -22,13 +25,24 @@ return (
     question={piece.question}
     correct={piece.correct_answer}
     incorrect={piece.incorrect_answers}
+    checked={isChecked}
+    toggle={props.toggle}
     />
 )
 })
+
     return (
+
         <main className="main-quiz">
           {questions}
-            <button className="check-button">Check answers</button>
+          {!isChecked ? 
+          <button onClick={() => setIsChecked(true)} className="check-button">Check answers</button> :
+          <div>
+            <p>You scored somewhat correct answers</p>
+          <button className="again-button" onClick={props.toggle}>Play again</button>
+          </div>
+          }
+            
         </main>
     )
 }

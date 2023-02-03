@@ -1,21 +1,13 @@
 import Answer from "./Answer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 
 export default function Question(props) {
 
-    let idCounter = 1;
-    const answersArray = [
-        { value: props.correct, correct: true, id: 1, clicked: false },
-        ...props.incorrect.map(answer => {
-            return { value: answer, correct: false, id: ++idCounter, clicked: false }
-        })
-    ];
-
     function shuffle(array) {
         let currentIndex = array.length, randomIndex;
 
-        while (currentIndex != 0) {
+        while (currentIndex !== 0) {
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex--;
 
@@ -25,22 +17,28 @@ export default function Question(props) {
         return array;
     }
 
-    const shuffledAnswersArray = shuffle(answersArray);
-
-    const [answerData, setAnswerData] = useState(shuffledAnswersArray);
-
-function chooseAnswer(id) {
-setAnswerData( oldData => {
-    return oldData.map(answer => {
-        return answer.id === id ? 
-        {...answer, clicked: !answer.clicked} : 
-        {...answer, clicked: false};
+    const [answerData, setAnswerData] = useState(
+        shuffle([
+            { value: props.correct, correct: true, id: nanoid(), clicked: false },
+            ...props.incorrect.map(answer => {
+                return { value: answer, correct: false, id: nanoid(), clicked: false }
             })
-}
-    
-   
-    )
-}
+        ])
+    );
+
+
+    function chooseAnswer(id) {
+        setAnswerData(oldData => {
+            return oldData.map(answer => {
+                return answer.id === id ?
+                    { ...answer, clicked: !answer.clicked } :
+                    { ...answer, clicked: false };
+            })
+        }
+
+
+        )
+    }
 
     const answerButtons = answerData.map(answer => {
         return (
@@ -50,7 +48,7 @@ setAnswerData( oldData => {
                 correct={answer.correct}
                 clicked={answer.clicked}
                 choose={() => chooseAnswer(answer.id)}
-
+                checked={props.checked}
             />
         )
     })
@@ -59,10 +57,7 @@ setAnswerData( oldData => {
         <div className="question-container">
             <p className="question-text">{props.question}</p>
             <div className="answer-container">
-
                 {answerButtons}
-
-
             </div>
         </div>
     )
