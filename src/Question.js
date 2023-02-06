@@ -14,16 +14,19 @@ export default function Question(props) {
             [array[currentIndex], array[randomIndex]] = [
                 array[randomIndex], array[currentIndex]];
         }
+        
         return array;
     }
 
-    const [answerData, setAnswerData] = useState(
-        shuffle([
+    const [answerData, setAnswerData] = useState(() => {
+        return shuffle([
             { value: props.correct, correct: true, id: nanoid(), clicked: false },
             ...props.incorrect.map(answer => {
                 return { value: answer, correct: false, id: nanoid(), clicked: false }
             })
         ])
+    }
+        
     );
 
 

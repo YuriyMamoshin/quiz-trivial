@@ -6,6 +6,8 @@ import Quiz from "./Quiz"
 
 export default function App() {
 
+
+ 
     const [quizStarted, setQuizStarted] = useState(false);
 
     function toggleStarted() {
@@ -13,13 +15,13 @@ export default function App() {
     }
     return (
         <div>
-            {quizStarted ? 
-            <Quiz 
-            toggle={toggleStarted}
-            /> : 
-            <Main 
-            toggle={toggleStarted}
-            />}
+            {quizStarted ?
+                <Quiz
+                    toggle={toggleStarted}
+                /> :
+                <Main
+                    toggle={toggleStarted}
+                />}
         </div>
     )
 }
