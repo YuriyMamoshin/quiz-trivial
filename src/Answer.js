@@ -9,6 +9,11 @@ const stylesChecked = {
 }
  
     return (
-        <button style={props.checked ? stylesChecked : styles}  className="answer-button" onClick={props.choose}>{props.value} {+props.correct}</button>
+        <button 
+        style={props.checked ? stylesChecked : styles}  
+        className="answer-button" 
+        onClick={!props.checked ? props.choose : null}>
+            {props.value} {+props.correct}
+        </button>
     )
 }
