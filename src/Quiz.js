@@ -16,7 +16,7 @@ export default function Quiz(props) {
         setData(addId(fetchedData.results));
         
     }
-    console.log(data);
+   
     function addId(arr) {
         return arr.map(question => ({
             question: question.question,
@@ -49,6 +49,12 @@ export default function Quiz(props) {
 
 
         )
+    }
+
+    function countCorrectAnswers() {
+        return data.filter(question => {
+            return question.answers.filter(answer => answer.clicked && answer.correct).length
+        })
     }
 
     function shuffle(array) {
@@ -91,7 +97,7 @@ export default function Quiz(props) {
             {!isChecked ?
                 <button onClick={() => setIsChecked(true)} className="check-button">Check answers</button> :
                 <div className="again-container">
-                    <p>You scored somewhat correct answers</p>
+                    <p>You scored somewhat of {countCorrectAnswers().length}/{data.length} correct answers</p>
                     <button className="again-button" onClick={props.toggle}>Play again</button>
                 </div>
             }
