@@ -96,7 +96,7 @@ export default function Quiz(props) {
             {!isChecked ?
                 <button onClick={() => setIsChecked(true)} className="check-button">Check answers</button> :
                 <div className="again-container">
-                    <p>You scored somewhat of {countCorrectAnswers().length}/{data.length} correct answers</p>
+                    <p>You scored {countCorrectAnswers().length} of {data.length} correct answers</p>
                     <button className="again-button" onClick={props.toggle}>Play again</button>
                 </div>
             }

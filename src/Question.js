@@ -1,13 +1,6 @@
 import Answer from "./Answer";
-import { useState, useEffect } from "react";
-import { nanoid } from "nanoid";
 
 export default function Question(props) {
-
-
-
-
-console.log(props.question);
 
     const answerButtons = props.answers.map(answer => {
         return (
