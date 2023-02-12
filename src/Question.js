@@ -7,7 +7,7 @@ export default function Question(props) {
 
 
 
-
+console.log(props.question);
 
     const answerButtons = props.answers.map(answer => {
         return (

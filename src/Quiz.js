@@ -1,6 +1,7 @@
 import Question from "./Question"
 import { useEffect, useState } from "react"
 import { nanoid } from "nanoid";
+import {decode} from "he";
 
 export default function Quiz(props) {
 
@@ -13,13 +14,9 @@ export default function Quiz(props) {
     async function fetchData() {
         const response = await fetch("https://opentdb.com/api.php?amount=5&category=23&difficulty=hard&type=multiple");
         let fetchedData = await response.json();
-        setData(addId(fetchedData.results));
         
-    }
-   
-    function addId(arr) {
-        return arr.map(question => ({
-            question: question.question,
+        setData(fetchedData.results.map(question => ({
+            question: decode(question.question),
             answers: shuffle([
                 { value: question.correct_answer, correct: true, id: nanoid(), clicked: false },
                 ...question.incorrect_answers.map(answer => {
@@ -27,7 +24,8 @@ export default function Quiz(props) {
                 })
             ]),
             id: nanoid()
-        }))
+        })));
+
     }
 
 
@@ -36,7 +34,8 @@ export default function Quiz(props) {
             return oldData.map(question => {
                 return question.id === idQuestion ?
                     {
-                        ...question, answers: question.answers.map(answer => {
+                        ...question,
+                        answers: question.answers.map(answer => {
                             return answer.id === idAnswer ?
                                 { ...answer, clicked: !answer.clicked } :
                                 { ...answer, clicked: false };
