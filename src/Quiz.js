@@ -18,9 +18,9 @@ export default function Quiz(props) {
         setData(fetchedData.results.map(question => ({
             question: decode(question.question),
             answers: shuffle([
-                { value: question.correct_answer, correct: true, id: nanoid(), clicked: false },
+                { value: decode(question.correct_answer), correct: true, id: nanoid(), clicked: false },
                 ...question.incorrect_answers.map(answer => {
-                    return { value: answer, correct: false, id: nanoid(), clicked: false }
+                    return { value: decode(answer), correct: false, id: nanoid(), clicked: false }
                 })
             ]),
             id: nanoid()
